@@ -1,0 +1,10 @@
+{
+    "editor.tabSize": 2,
+    "workbench.tree.indent": 2,
+    "bladeFormatter.format.indentSize": 2,
+    "volar.format.initialIndent": {
+
+        "html": true
+    },
+    "vetur.format.styleInitialIndent": false
+}
