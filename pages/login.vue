@@ -50,6 +50,9 @@ const onSubmit = () => {
   console.log(form);
   authStore.login(form.username,form.password)
 }
+definePageMeta({
+  middleware:'check-guest'
+})
 </script>
 
 <style scoped>

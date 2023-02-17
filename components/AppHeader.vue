@@ -37,7 +37,7 @@
                     </NuxtLink>
                 </div>
                 <div v-else class="col-6 col-sm-4 col-md-2 col-xl py-3">
-                    <a @click.prevent=""  class="btn btn-outline-dark active w-100">
+                    <a @click.prevent="logout"  class="btn btn-outline-dark active w-100">
                         Logout
                     </a>
                 </div>
@@ -138,7 +138,12 @@ const resetProducts = () => {
 
 const token = useCookie('token')
 const user = useCookie('user')
-
+const logout= () => {
+    token.value = null;
+    user.value = null;
+    authStore.logout();
+    router.push({path:'/login'})
+}
 
 </script>
 

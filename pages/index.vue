@@ -9,7 +9,7 @@
                     <div class="">
                         <form @submit.prevent="tilteProduct">
                             <input type="text" placeholder="Search" v-model="searchTitle" class="form-control">
-                            <button type="submit">Search</button>
+                            <button type="submit" class="btn btn-primary">Search</button>
                         </form>
                     </div>
 
