@@ -8,7 +8,7 @@
 
                     <div class="">
                         <form @submit.prevent="tilteProduct">
-                            <input type="text" placeholder="Search" v-model="searchTitle">
+                            <input type="text" placeholder="Search" v-model="searchTitle" class="form-control">
                             <button type="submit">Search</button>
                         </form>
                     </div>
@@ -52,4 +52,6 @@ const tilteProduct = () => {
     router.push({ query: { title:searchTitle.value } })
 
 }
+
+
 </script>
