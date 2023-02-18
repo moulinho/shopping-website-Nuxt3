@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       },
     ],
     '@nuxt/image-edge',
+    '@vueuse/nuxt',
   ],
   imports:{dirs:['stores']},//importation des contenu du dossier stores
   image: {

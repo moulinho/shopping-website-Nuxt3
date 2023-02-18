@@ -41,6 +41,7 @@
 
 
 <script setup>
+
 const authStore = useAuth()
 const form = reactive({
     username:'',

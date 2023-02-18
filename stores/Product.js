@@ -14,6 +14,7 @@ export const useProduct = defineStore("product", {
     },
   },
   actions: {
+    
     async fetchAllProducts() {
       this.products = [];
       const { data: products } = useFetch(this.baseUrl, {
@@ -21,6 +22,9 @@ export const useProduct = defineStore("product", {
       });
       this.products = products;
     },
+
+    //Fetch products from the API
+
     async fetchSearchProducts(title = null) {
       this.products = [];
       const { data: products } = useFetch(this.baseUrl + "?title=" + title, {

@@ -67,15 +67,15 @@
 </template>
 
 <script setup>
-const productStore = useProduct()
+const productStore = useProduct();
 
-const route = useRoute()
+const route = useRoute();
 
 productStore.fetchProduct(route.params.id);
 
 const { product } = storeToRefs(productStore)
 
-console.log("route.params.id", route.params.id);
+// console.log("route.params.id", route.params.id);
 
 /* Meta data */
 
@@ -92,12 +92,14 @@ useHead({
 
 const cartStore = useCart();
 
-async function addToCart(product) {
-  await cartStore.addToCart({
-    id: product.id,
-    name: product.name,
-    image: product.images[1],
-    price: product.price
+async function addToCart(prod) {
+  console.log('product',prod)
+  await cartStore.addTocart({
+    id: prod.id,
+    name: prod.title,
+    image: prod.images[1],
+    price: prod.price,
+    category:prod.category.name
   })
 }
 
