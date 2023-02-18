@@ -17,7 +17,7 @@
         <div class="d-none d-md-flex">
 
           <div class="nav-item dropdown d-none d-md-flex me-3">
-            <NuxtLink href="/cart" class="nav-link px-0"  aria-label="Show notifications">
+            <NuxtLink href="/cart" class="nav-link px-0" aria-label="Show notifications">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="24"
                 height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -114,28 +114,38 @@
 </template>
 
 <script setup>
-const router = useRouter()
-const authStore = useAuth()
+const router = useRouter();
+
+const authStore = useAuth();
+
 const productStore = useProduct();
+
 productStore.fetchCategoriesProduct();
+
 const { categories } = storeToRefs(productStore);
+
+/**
+ * 
+ * @param {Number} categoryId 
+ */
 const fetchCategory = async (categoryId) => {
-  console.log("categoryId", categoryId);
   const response = await fetch(`https://api.escuelajs.co/api/v1/categories/${categoryId}/products`).then(data => data.json());
   productStore.products = response
-  //    console.log("fetchCategory", response);
-  //    router.push({path:'/',query:{category:category}})
+
 };
-const resetProducts =  async () => {
- 
- await router.push({ path: '/' }).then((result) => {
-  console.log('result',result)
+
+
+const resetProducts = async () => {
+  await router.push({ path: '/' }).then((result) => {
+
     window.location.reload()
   })
 }
 
-const token = useCookie('token')
-const user = useCookie('user')
+const token = useCookie('token');
+const user = useCookie('user');
+
+
 const logout = () => {
   token.value = null;
   user.value = null;
@@ -143,7 +153,9 @@ const logout = () => {
   router.push({ path: '/login' })
 }
 
-const cartStore = useCart()
+const cartStore = useCart();
+
+
 </script>
 
 <style lang="scss" scoped></style>

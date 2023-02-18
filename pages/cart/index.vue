@@ -22,6 +22,7 @@
 
                       <td>
                         <div class="d-flex py-1 align-items-center">
+                          <button class="btn btn-danger btn-sm me-3" @click="removeProductCart(item)">X</button>
                           <span class="avatar me-2" :style="{ 'background-image': 'url(' + item.productImage + ')' }">
                           </span>
 
@@ -44,12 +45,12 @@
                         {{ item.subTotal.toFixed(2) }}
                       </td>
                     </tr>
-                      <tr>
+                    <tr>
                       <td colspan="3">
                         <h3>Total</h3>
                       </td>
                       <td>
-                        <h3>120€</h3>
+                        <h3>{{ cartStore.getToralAmount.toFixed(2) }}</h3>
                       </td>
                     </tr>
 
@@ -68,7 +69,7 @@
 <script setup>
 
 const cartStore = useCart();
-const clearCart =  () => {
+const clearCart = () => {
 
   cartStore.clearCart();
 
@@ -77,11 +78,20 @@ const clearCart =  () => {
  * 
  * @param {object} item 
  */
-const incrementProduct = async (item)=>{
+const incrementProduct = async (item) => {
   await cartStore.incrementQuatity(item)
 }
 
-const decrementProduct = async (item)=>{
+const decrementProduct = async (item) => {
   await cartStore.decrementQuantity(item)
+}
+
+
+
+/**
+ * 
+ */
+const removeProductCart = async (item) => {
+  await cartStore.removeProductFromCart(item)
 }
 </script>

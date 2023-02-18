@@ -14,6 +14,8 @@ export const useCart = defineStore("cart", {
 
     getTotalItems: (state) =>
       state.items.reduce((sum, current) => sum + current.quantity, 0),
+
+    getToralAmount: (state) => state.items.reduce((sum,current) => sum + current.subTotal,0)
   },
 
   actions: {
@@ -48,12 +50,6 @@ export const useCart = defineStore("cart", {
         });
       }
     },
-    /**
-     * Clear all product
-     */
-    async clearCart() {
-      this.items = [];
-    },
 
     /**
      * If the item is not found, create a new one.
@@ -73,19 +69,38 @@ export const useCart = defineStore("cart", {
       this.items[existingItemIndex] = product;
     },
 
-/**
- * Decrement the quantity of a product by one.
- * 
- * @param {object} product 
- */
+    /**
+     * Decrement the quantity of a product by one.
+     *
+     * @param {object} product
+     */
 
-    async decrementQuantity(product){
+    async decrementQuantity(product) {
       let existingItemIndex = this.items.findIndex(
         (item) => item.productId === product.productId
       );
-      product.quantity -=1;
+      product.quantity -= 1;
       product.subTotal = product.price * product.quantity;
-      this.items[existingItemIndex]  = product
-    }
+      this.items[existingItemIndex] = product;
+      if (product.quantity < 1) {
+        this.removeProductFromCart(product)
+        
+      }
+    },
+
+
+    async removeProductFromCart(product) {
+      let existingItemIndex = this.items.findIndex(
+        (item) => item.productId === product.productId
+      );
+      this.items.splice(existingItemIndex, 1);
+    },
+
+    /**
+     * Clear all product
+     */
+    async clearCart() {
+      this.items = [];
+    },
   },
 });
