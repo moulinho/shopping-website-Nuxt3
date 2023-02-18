@@ -5,6 +5,7 @@
       <div class="container-xl">
         <div class="row row-cards">
           <div class="col-12">
+            <button class="btn btn-danger mb-2" @click="clearCart"> Empty the basket </button>
             <div class="card">
               <div class="table-responsive">
                 <table class="table table-vcenter card-table">
@@ -16,58 +17,34 @@
                       <th class="w-1">Total produit</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody>
                     <tr v-for="item in cartStore.getItems" :key="item.id">
-                     
+
                       <td>
                         <div class="d-flex py-1 align-items-center">
-                          <span class="avatar me-2"
-                            :style="{'background-image': 'url('+item.productImage+')'}">
+                          <span class="avatar me-2" :style="{ 'background-image': 'url(' + item.productImage + ')' }">
                           </span>
-                         
+
                           <div class="flex-fill">
-                            <div class="font-weight-medium">{{item.productName}}</div>
+                            <div class="font-weight-medium">{{ item.productName }}</div>
                             <div class="text-muted"> {{ item.productCategory }}</div>
                           </div>
                         </div>
                       </td>
                       <td class="fs-2">
                         <button class="badge bg-primary-lt">-</button>
-                        {{item.quantity}}
-                        <button class="badge bg-primary-lt">+</button>
+                        {{ item.quantity }}
+                        <button class="badge bg-primary-lt" @click="IncrementProduct(item)">+</button>
                         <!-- <div class="text-muted">Accounting</div> -->
                       </td>
                       <td>
-                        {{item.price}}
+                        {{ item.price.toFixed(2) }}
                       </td>
                       <td>
-                        {{item.subTotal}}
+                        {{ item.subTotal.toFixed(2) }}
                       </td>
                     </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex py-1 align-items-center">
-                        
-                          <div class="flex-fill">
-                            <div class="font-weight-medium">Autre produit</div>
-                            <div class="text-muted"><a href="#" class="text-reset">Autre catégorie</a></div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="fs-2">
-                        <button class="badge bg-primary-lt">-</button>
-                        1
-                        <button class="badge bg-primary-lt">+</button>
-                      </td>
-                      <td>
-                        90€
-                      </td>
-                      <td>
-                        90€
-                      </td>
-                    </tr>
-
-                    <tr>
+                      <tr>
                       <td colspan="3">
                         <h3>Total</h3>
                       </td>
@@ -89,5 +66,16 @@
 </template>
 
 <script setup>
+
 const cartStore = useCart();
+
+const clearCart =  () => {
+
+  cartStore.clearCart();
+
+}
+
+const IncrementProduct = async (item)=>{
+  await cartStore.increamentQuatity(item)
+}
 </script>
