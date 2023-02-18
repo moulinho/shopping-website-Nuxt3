@@ -4,7 +4,7 @@ export const useCart = defineStore("cart", {
   state: () => ({
     items: useLocalStorage("items", []),
   }),
-
+  //Save & persistence the state to localStorage
   hydrate(state, initialState) {
     state.items = useLocalStorage("items", []);
   },
@@ -17,6 +17,11 @@ export const useCart = defineStore("cart", {
   },
 
   actions: {
+    /**
+     * Add item to cart
+     *
+     * @param {object} itemPayload
+     */
     async addTocart(itemPayload) {
       console.log("itemPayload", itemPayload);
 
@@ -43,19 +48,44 @@ export const useCart = defineStore("cart", {
         });
       }
     },
-
+    /**
+     * Clear all product
+     */
     async clearCart() {
       this.items = [];
     },
 
-    async increamentQuatity(product) {
+    /**
+     * If the item is not found, create a new one.
+     *
+     * @param {object} product
+     */
+
+    async incrementQuatity(product) {
       let existingItemIndex = this.items.findIndex(
         (item) => item.productId === product.productId
       );
 
-      product.quantity +=1;
+      product.quantity += 1;
+
       product.subTotal = product.price * product.quantity;
-      this.items[existingItemIndex] = product
+
+      this.items[existingItemIndex] = product;
     },
+
+/**
+ * Decrement the quantity of a product by one.
+ * 
+ * @param {object} product 
+ */
+
+    async decrementQuantity(product){
+      let existingItemIndex = this.items.findIndex(
+        (item) => item.productId === product.productId
+      );
+      product.quantity -=1;
+      product.subTotal = product.price * product.quantity;
+      this.items[existingItemIndex]  = product
+    }
   },
 });

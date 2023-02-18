@@ -14,7 +14,9 @@ export const useProduct = defineStore("product", {
     },
   },
   actions: {
-    
+    /**
+     * Fetch all products in the store.
+     */
     async fetchAllProducts() {
       this.products = [];
       const { data: products } = useFetch(this.baseUrl, {
@@ -23,8 +25,11 @@ export const useProduct = defineStore("product", {
       this.products = products;
     },
 
-    //Fetch products from the API
-
+    /**
+     * Fetch products from the API
+     *
+     * @param {string} title
+     */
     async fetchSearchProducts(title = null) {
       this.products = [];
       const { data: products } = useFetch(this.baseUrl + "?title=" + title, {
@@ -34,12 +39,24 @@ export const useProduct = defineStore("product", {
       this.products = products;
     },
 
+    /**
+     * Fetch product details
+     *
+     * @param {number} id
+     */
     async fetchProduct(id) {
       const { data: product } = useFetch(this.baseUrl + id, {
         key: `product/${id}`,
       });
       this.product = product;
     },
+
+    /**
+     * The category of the sticker to be sent.
+     *
+     * @param {String} category
+     */
+
     async fetchCategoriesProduct(category = null) {
       if (category !== null) {
         const { data: categories } = useFetch(

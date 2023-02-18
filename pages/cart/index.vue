@@ -32,9 +32,9 @@
                         </div>
                       </td>
                       <td class="fs-2">
-                        <button class="badge bg-primary-lt">-</button>
+                        <button class="badge bg-primary-lt" @click="decrementProduct(item)">-</button>
                         {{ item.quantity }}
-                        <button class="badge bg-primary-lt" @click="IncrementProduct(item)">+</button>
+                        <button class="badge bg-primary-lt" @click="incrementProduct(item)">+</button>
                         <!-- <div class="text-muted">Accounting</div> -->
                       </td>
                       <td>
@@ -68,14 +68,20 @@
 <script setup>
 
 const cartStore = useCart();
-
 const clearCart =  () => {
 
   cartStore.clearCart();
 
 }
+/**
+ * 
+ * @param {object} item 
+ */
+const incrementProduct = async (item)=>{
+  await cartStore.incrementQuatity(item)
+}
 
-const IncrementProduct = async (item)=>{
-  await cartStore.increamentQuatity(item)
+const decrementProduct = async (item)=>{
+  await cartStore.decrementQuantity(item)
 }
 </script>
