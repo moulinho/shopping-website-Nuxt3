@@ -8,8 +8,9 @@
             <div class="card card-lg">
               <div class="card-body markdown">
                 <h1 class="mb-0">{{ product.title }}</h1>
+
                 <p>
-                  <img :src="product.images[1]" :alt="product.title" class="card-img-top">
+                  <img :src="product.images[0]" :alt="product.title" class="card-img-top">
 
                 </p>
 

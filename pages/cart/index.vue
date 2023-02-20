@@ -5,7 +5,8 @@
       <div class="container-xl">
         <div class="row row-cards">
           <div class="col-12">
-            <button class="btn btn-danger mb-2" @click="clearCart"> Empty the basket </button>
+            <!-- <button class="btn btn-danger mb-2" @click="clearCart"> Empty the basket </button> -->
+            <button class="btn btn-danger mb-2" @click="clearCart"> {{$t('clearBasket')}} </button>
             <div class="card">
               <div class="table-responsive">
                 <table class="table table-vcenter card-table">

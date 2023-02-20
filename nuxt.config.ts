@@ -19,7 +19,26 @@ export default defineNuxtConfig({
     ],
     '@nuxt/image-edge',
     '@vueuse/nuxt',
+    '@nuxtjs/i18n',
+   
   ],
+  i18n: {
+    /* module options */
+    vueI18n: {
+      legacy:false,
+      locale:'fr',
+      messages:{
+        fr:{
+          clearBasket : "vider le panier",
+          login:'Se connecter'
+        },
+        en:{
+          clearBasket : "Clear",
+          login:'Login'
+        }
+      }
+    }
+  },
   imports:{dirs:['stores']},//importation des contenu du dossier stores
   image: {
     domains: ['https://api.escuelajs.co']
@@ -28,5 +47,10 @@ export default defineNuxtConfig({
     public:{
       apiBase:'https://api.escuelajs.co/api/v1/products/'
     }
-  }
+  },
+  // ssr:false
+  // routeRules:{
+  //   '/product/**':{ static:true },
+  //   // '/cart/**':{ssr:false}
+  // }
 });

@@ -5,7 +5,7 @@
         
         <!-- <img :src="product.images[1]" class="card-img-top"> -->
         <!-- <nuxt-img fit="contains" :src="product.images[1]" :alt="product.title" class="card-img-top" loading="lazy" preload/> -->
-        <nuxt-img fit="cover" :src="`${product.images[1]}`" :alt="product.title" class="card-img-top" loading="lazy" preload />
+        <nuxt-img fit="cover" :src="`${product.images[0]}`" :alt="product.title" class="card-img-top" loading="lazy" preload />
       </a>
       <div class="card-body">
         <div class="d-flex align-items-center">
