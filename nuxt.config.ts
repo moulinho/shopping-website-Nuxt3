@@ -24,6 +24,13 @@ export default defineNuxtConfig({
     /* module options */
     locales: ["en","fr"],
     defaultLocale:'en',
+    customRoutes:'config',
+    pages:{
+      login:{
+        en:'/login',
+        fr:'/connexion'
+      }
+    },
     vueI18n: {
       legacy: false,
       locale: "fr",

@@ -30,15 +30,16 @@
               <span class="badge bg-red">{{ cartStore.getTotalItems }}</span>
             </NuxtLink>
           </div>
-      </div>
-      <!-- 
+        </div>
+
         <div v-if="!token && !authStore.token" class="col-6 col-sm-4 col-md-2 col-xl py-3">
-          <NuxtLink to="/login" class="btn btn-outline-primary w-100">
+          <!-- <NuxtLink to="/login" class="btn btn-outline-primary w-100">
             Login
-              </NuxtLink>
-            </div> -->
-        <div v-if="!token && !authStore.token" class="col-6 col-sm-4 col-md-2 col-xl py-3">
-          <NuxtLink to="/login" class="btn btn-outline-primary w-100">
+          </NuxtLink> -->
+          <!-- <NuxtLink to="/login" class="btn btn-outline-primary w-100">
+            {{ $t('login') }}
+          </NuxtLink> -->
+          <NuxtLink :to="localePath({name:'login'})" class="btn btn-outline-primary">
             {{ $t('login') }}
           </NuxtLink>
         </div>
@@ -132,7 +133,7 @@
 
                 <NuxtLink :to="switchLocalPath('en')" class="dropdown-item">English</NuxtLink>
                 <NuxtLink :to="switchLocalPath('fr')" class="dropdown-item"> Français</NuxtLink>
-              
+
 
               </div>
             </li>
@@ -188,6 +189,7 @@ const logout = () => {
 const cartStore = useCart();
 
 const switchLocalPath = useSwitchLocalePath();
+const localePath = useLocalePath()
 
 </script>
 
