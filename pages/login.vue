@@ -26,7 +26,17 @@
                       <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Login</button>
                       </div>
+                    
+
+                      
                     </form>
+                    <div class="mb-3">
+                      <h3>
+                          Default admin access : <br/>
+                          username : admin<br/>
+       password: "admin"
+                        </h3>
+                      </div>
                   </div>
                 </div>
 
